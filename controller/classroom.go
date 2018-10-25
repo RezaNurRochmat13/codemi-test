@@ -19,12 +19,12 @@ func GetAllClass(c *gin.Context) {
 		"count": 1})
 }
 
+// GetDetailClass func does get detail classroom
+func GetDetailClass(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{"data": "Detail classroom"})
+}
+
 // CreateNewClass func does create new class and participants
 func CreateNewClass(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "Inserted successfully"})
-}
-
-// DetailClass func does get detail classroom
-func DetailClass(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{"data": "Detail classroom"})
 }
