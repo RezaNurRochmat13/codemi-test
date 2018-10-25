@@ -1,16 +1,13 @@
-package model
+package dto
 
 import (
 	"time"
 
-	"github.com/jinzhu/gorm"
-	"github.com/satori/go.uuid"
+	uuid "github.com/satori/go.uuid"
 )
 
-// Participants struct model
+// Participants struct dto
 type Participants struct {
-	gorm.Model
-	IdParticipants       uuid.UUID
 	UuidParticipants     uuid.UUID
 	ParticipantsName     string
 	ParticipantsAddress  string
