@@ -24,7 +24,7 @@ func BaseRoutingApplication() {
 
 		// Classroom base routing
 		v1.GET("classroom", controller.GetAllClass)
-		v1.GET("classroom", controller.GetDetailClass)
+		v1.GET("classroom/:UuidClassroom", controller.GetDetailClass)
 	}
 
 	baseRoutes.Run(":8000")
