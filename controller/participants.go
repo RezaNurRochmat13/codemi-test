@@ -2,10 +2,12 @@ package controller
 
 import (
 	"codemi/config"
+	"codemi/model"
 	"codemi/model/dto"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	uuid "github.com/satori/go.uuid"
 )
 
 /**
@@ -61,7 +63,36 @@ func GetDetailParticipants(c *gin.Context) {
 	}
 }
 
-// CreateParticipants func does create new participants
-func CreateParticipants(c *gin.Context) {
+// CreateNewParticipants func does create new participants
+func CreateNewParticipants(c *gin.Context) {
+	// Initialize database connection
+	db := config.DatabaseConn()
+
+	// Declaring input parameters
+	UuidParticipants := uuid.Must(uuid.NewV4())
+	ParticipantsName := c.Param("ParticipantsName")
+	ParticipantsAddress := c.Param("ParticipantsAddress")
+	ParticipantsBirthday := c.Param("ParticipantsBirthday")
+	ParticipantsAge := c.Param("ParticipantsAge")
+	ParticipantsGender := c.Param("ParticipantsGender")
+	ParticipantsPhone := c.Param("ParticipantsPhone")
+
+	// Bind in one parameters
+	createParticipantsPayload := model.Participants{
+		UuidParticipants:     UuidParticipants,
+		ParticipantsName:     ParticipantsName,
+		ParticipantsAddress:  ParticipantsAddress,
+		ParticipantsBirthday: ParticipantsBirthday,
+		ParticipantsAge:      ParticipantsAge,
+		ParticipantsGender:   ParticipantsGender,
+		ParticipantsPhone:    ParticipantsPhone}
+
+	// Bind as JSON parameters
+	c.BindJSON(&createParticipantsPayload)
+
+	// Saved in database
+	db.Save(&createParticipantsPayload)
+
+	// Success message
 	c.JSON(http.StatusOK, gin.H{"message": "Inserted successfully"})
 }

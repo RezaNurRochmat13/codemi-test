@@ -1,8 +1,6 @@
 package model
 
 import (
-	"time"
-
 	"github.com/jinzhu/gorm"
 	"github.com/satori/go.uuid"
 )
@@ -10,12 +8,11 @@ import (
 // Participants struct model
 type Participants struct {
 	gorm.Model
-	IdParticipants       uuid.UUID
 	UuidParticipants     uuid.UUID
 	ParticipantsName     string
 	ParticipantsAddress  string
-	ParticipantsBirthday time.Time
-	ParticipantsAge      int
+	ParticipantsBirthday string
+	ParticipantsAge      string
 	ParticipantsGender   string
-	ParticipantsPhone    int
+	ParticipantsPhone    string
 }

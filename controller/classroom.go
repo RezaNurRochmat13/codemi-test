@@ -77,9 +77,13 @@ func CreateNewClass(c *gin.Context) {
 	UUIDParticipants := c.Param("UUIDParticipants")
 
 	// Bind in one parameters
-	createClassroomPayload := model.Classroom{IDClassroom: IDClassroom, UUIDClassroom: UUIDClassroom,
-		ClassroomName: ClassroomName, ClassroomTime: ClassroomTime,
-		Room: Room, UUIDParticipants: UUIDParticipants}
+	createClassroomPayload := model.Classroom{
+		IDClassroom:      IDClassroom,
+		UUIDClassroom:    UUIDClassroom,
+		ClassroomName:    ClassroomName,
+		ClassroomTime:    ClassroomTime,
+		Room:             Room,
+		UUIDParticipants: UUIDParticipants}
 
 	// Bind parameter as JSON Parameters
 	c.BindJSON(&createClassroomPayload)

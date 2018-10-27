@@ -21,6 +21,7 @@ func BaseRoutingApplication() {
 		// Participants base routing
 		v1.GET("participants", controller.GetAllParticipants)
 		v1.GET("participants/:UuidParticipants", controller.GetDetailParticipants)
+		v1.POST("participants", controller.CreateNewParticipants)
 
 		// Classroom base routing
 		v1.GET("classroom", controller.GetAllClass)
