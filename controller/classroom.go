@@ -2,10 +2,12 @@ package controller
 
 import (
 	"codemi/config"
+	"codemi/model"
 	"codemi/model/dto"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	uuid "github.com/satori/go.uuid"
 )
 
 /**
@@ -62,5 +64,28 @@ func GetDetailClass(c *gin.Context) {
 
 // CreateNewClass func does create new class and participants
 func CreateNewClass(c *gin.Context) {
+
+	// // Initialize database connection
+	db := config.DatabaseConn()
+
+	// Declare parameters
+	IDClassroom := uuid.Must(uuid.NewV4())
+	UUIDClassroom := uuid.Must(uuid.NewV4())
+	ClassroomName := c.Param("ClassroomName")
+	ClassroomTime := c.Param("ClassroomTime")
+	Room := c.Param("Room")
+	UUIDParticipants := c.Param("UUIDParticipants")
+
+	// Bind in one parameters
+	createClassroomPayload := model.Classroom{IDClassroom: IDClassroom, UUIDClassroom: UUIDClassroom,
+		ClassroomName: ClassroomName, ClassroomTime: ClassroomTime,
+		Room: Room, UUIDParticipants: UUIDParticipants}
+
+	// Bind parameter as JSON Parameters
+	c.BindJSON(&createClassroomPayload)
+
+	// Save in database
+	db.Save(&createClassroomPayload)
+
 	c.JSON(http.StatusOK, gin.H{"message": "Inserted successfully"})
 }

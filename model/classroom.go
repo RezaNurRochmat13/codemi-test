@@ -8,10 +8,10 @@ import (
 // Classroom struct
 type Classroom struct {
 	gorm.Model
-	IDClassroom   uuid.UUID
-	UUIDClassroom uuid.UUID
-	ClassroomName string
-	ClassroomTime string
-	Room          string
-	Attendees     []Participants
+	IDClassroom      uuid.UUID
+	UUIDClassroom    uuid.UUID
+	ClassroomName    string
+	ClassroomTime    string
+	Room             string
+	UUIDParticipants string
 }

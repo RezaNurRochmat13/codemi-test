@@ -1,6 +1,8 @@
 package dto
 
-import uuid "github.com/satori/go.uuid"
+import (
+	uuid "github.com/satori/go.uuid"
+)
 
 // Classroom struct
 type Classroom struct {
@@ -8,5 +10,5 @@ type Classroom struct {
 	ClassroomName string
 	ClassroomTime string
 	Room          string
-	Attendees     []Participants
+	Attendees     Participants `gorm:"many2many:uuid_participants;"`
 }
