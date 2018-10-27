@@ -10,7 +10,7 @@ import _ "github.com/go-sql-driver/mysql"
 
 // DatabaseConn function does initialize database connection
 func DatabaseConn() *gorm.DB {
-	db, err := gorm.Open("mysql", "reza:reza@tcp(127.0.0.1:3306)/codemi?charset=utf8&parseTime=True&loc=Local")
+	db, err := gorm.Open("mysql", "reza:reza@tcp(127.0.0.1:3306)/codemi?charset=utf8&parseTime=true&loc=Local")
 
 	if err != nil {
 		panic(err)

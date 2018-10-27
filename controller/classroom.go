@@ -49,7 +49,13 @@ func GetDetailClass(c *gin.Context) {
 	UuidClassroom := c.Param("UuidClassroom")
 
 	// Declare models dto
-	var detailClassroom dto.Classroom
+	var detailClassroom dto.Classrooms
+
+	// Custom select columns
+	db.Select("classrooms.uuid_classroom, classrooms.classroom_name, classrooms.classroom_time, classrooms.room, participants.participants_name, participants.participants_address, participants.participants_gender, participants.participants_phone").
+		Joins("INNER JOIN participants ON participants.uuid_participants=classrooms.uuid_participants").
+		Where("classrooms.uuid_classroom = ?", UuidClassroom).
+		Find(&detailClassroom)
 
 	// Find the record in database
 	db.Where("classrooms.uuid_classroom = ?", UuidClassroom).Find(&detailClassroom)

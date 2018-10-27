@@ -5,7 +5,7 @@ import (
 	"github.com/satori/go.uuid"
 )
 
-// Classroom struct
+// Classroom struct model
 type Classroom struct {
 	gorm.Model
 	IDClassroom      uuid.UUID
@@ -14,4 +14,6 @@ type Classroom struct {
 	ClassroomTime    string
 	Room             string
 	UUIDParticipants string
+	// Associations table
+	Participants Participants
 }
